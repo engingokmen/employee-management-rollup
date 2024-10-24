@@ -1,6 +1,6 @@
 {
   "name": "@engingokmen/employee-management",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/bundle.min.js",
   "type": "module",
   "scripts": {
