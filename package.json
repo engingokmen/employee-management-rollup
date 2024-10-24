@@ -17,6 +17,10 @@
     "rollup": "^4.24.0"
   },
   "dependencies": {
-    "lit": "^3.2.1"
+    "@vaadin/router": "^2.0.0",
+    "lit": "^3.2.1",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
+    "zod": "^3.23.8"
   }
 }
