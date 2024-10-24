@@ -1,10 +1,11 @@
 {
-  "name": "bundle-r",
+  "name": "@engingokmen/employee-management",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/bundle.min.js",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
+    "npm:publish": "npm run build && npm version patch && npm publish --access public --otp ${otp}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
