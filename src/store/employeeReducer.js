@@ -51,17 +51,17 @@ export const fetchEmployees = (dispatch) => {
   dispatch({ type: "loaded", payload: employees });
 };
 
-export const addEmployee = (employee) => (dispatch, state) => {
+export const addEmployee = (employee) => (dispatch, getState) => {
   dispatch({ type: "addedEmployee", payload: employee });
-  localStorage.setItem("employees", JSON.stringify(state.employee.data));
+  localStorage.setItem("employees", JSON.stringify(getState().employee.data));
 };
 
-export const updateEmployee = (employee) => (dispatch, state) => {
+export const updateEmployee = (employee) => (dispatch, getState) => {
   dispatch({ type: "updatedEmployee", payload: employee });
-  localStorage.setItem("employees", JSON.stringify(state.employee.data));
+  localStorage.setItem("employees", JSON.stringify(getState().employee.data));
 };
 
-export const deleteEmployee = (id) => (dispatch, state) => {
+export const deleteEmployee = (id) => (dispatch, getState) => {
   dispatch({ type: "deletedEmployee", payload: id });
-  localStorage.setItem("employees", JSON.stringify(state.employee.data));
+  localStorage.setItem("employees", JSON.stringify(getState().employee.data));
 };
