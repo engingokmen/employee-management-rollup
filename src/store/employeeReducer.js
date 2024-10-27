@@ -44,7 +44,6 @@ export const employee = (
 
 export const fetchEmployees = (dispatch) => {
   dispatch({type: 'loading'});
-  // TODO replace with local storage fetch
   const data = localStorage.getItem('employees');
   let employees = [];
   if (data && data !== 'undefined') {
