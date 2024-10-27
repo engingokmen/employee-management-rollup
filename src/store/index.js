@@ -12,6 +12,7 @@ import {
   deleteEmployee,
 } from "./employeeReducer";
 import { search, searchTerm } from "./searchReducer";
+import { route, toEmployeesPage, toAddEditEmployeePage } from "./routeReducer";
 
 const composedEnhancer = compose(applyMiddleware(thunk));
 
@@ -19,6 +20,7 @@ function rootReducer(state = {}, action) {
   return {
     employee: employee(state.employee, action),
     search: search(state.search, action),
+    route: route(state.route, action),
   };
 }
 
@@ -30,4 +32,6 @@ export {
   updateEmployee,
   deleteEmployee,
   searchTerm,
+  toEmployeesPage,
+  toAddEditEmployeePage,
 };

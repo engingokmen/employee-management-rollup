@@ -1,10 +1,8 @@
 import {LitElement, html, css} from 'lit';
 import {Employee, validationSchemaEmployee} from '../class/Employee';
 import {camelCaseToTitle} from '../utils';
-import {addEmployee, store, updateEmployee} from '../store';
-import {router} from '../router';
+import {addEmployee, store, toEmployeesPage, updateEmployee} from '../store';
 import {classMap} from 'lit/directives/class-map.js';
-import {Router} from '@vaadin/router';
 import {buttonStyles} from '../styles/button-style';
 import {getTranslation} from '../translation';
 
@@ -59,28 +57,30 @@ export class AddEditEmployee extends LitElement {
 
   constructor() {
     super();
-    this.employee = new Employee();
     this.schema = validationSchemaEmployee;
     this.errors = [];
-    this.location = router.location;
-    this.isEditPage = !!this.location.params.email;
+    this.email = store.getState().route.location.params?.email;
     this.showDialog = false;
     this.result = null;
+    this.initializeEmployee();
+    store.subscribe(() => {
+      this.initializeEmployee();
+    });
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    //  populate the form with the employee data
-    if (this.location.params.email) {
+  get isEditPage() {
+    return !!this.email;
+  }
+
+  initializeEmployee() {
+    this.email = store.getState().route.location.params?.email;
+    if (this.email) {
       const employee = store
         .getState()
-        .employee.data.find(
-          (employee) => employee.email === this.location.params.email
-        );
+        .employee.data.find((employee) => employee.email === this.email);
       this.employee = new Employee(...Object.values(employee));
-      this.isEditPage = true;
     } else {
-      this.isEditPage = false;
+      this.employee = new Employee();
     }
   }
 
@@ -141,14 +141,14 @@ export class AddEditEmployee extends LitElement {
         this.showDialog = true;
       } else {
         store.dispatch(addEmployee(this.result.data));
-        Router.go('/');
+        store.dispatch(toEmployeesPage());
       }
     }
   }
 
   confirmDialog() {
     store.dispatch(updateEmployee(this.result.data));
-    Router.go('/');
+    store.dispatch(toEmployeesPage());
   }
 
   cancelDialog() {

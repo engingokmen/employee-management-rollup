@@ -1,6 +1,5 @@
 export function getTranslation(key) {
   const lang = document.documentElement.lang || 'en';
-  console.log('lang', lang);
   return translations[lang][key] || translations['en'][key];
 }
 

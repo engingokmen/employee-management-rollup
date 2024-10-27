@@ -1,7 +1,7 @@
 {
   "name": "@engingokmen/employee-management",
   "version": "1.0.1",
-  "main": "dist/bundle.min.js",
+  "main": "dist/index.min.js",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
@@ -18,7 +18,6 @@
     "rollup": "^4.24.0"
   },
   "dependencies": {
-    "@vaadin/router": "^2.0.0",
     "lit": "^3.2.1",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",

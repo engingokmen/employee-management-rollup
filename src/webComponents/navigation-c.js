@@ -1,41 +1,43 @@
 import {LitElement, html, css} from 'lit';
-import {router} from '../router';
 import {getTranslation} from '../translation';
+import {store, toEmployeesPage, toAddEditEmployeePage} from '../store';
+import {buttonStyles} from '../styles/button-style';
 
 export class Navigation extends LitElement {
   static get styles() {
-    return css`
-      ul {
-        list-style-type: none;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
+    return [
+      buttonStyles,
+      css`
+        ul {
+          list-style-type: none;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          gap: 20px;
 
-        & a {
-          text-decoration: none;
-          color: var(--blue);
+          & a {
+            text-decoration: none;
+            color: var(--blue);
 
-          &:hover {
-            color: var(--lightBlue);
+            &:hover {
+              color: var(--lightBlue);
+            }
           }
         }
-      }
-    `;
-  }
-
-  static get properties() {
-    return {
-      linkHref: Object,
-    };
+      `,
+    ];
   }
 
   constructor() {
     super();
-    this.linkHref = {
-      employees: router.location.routes[0].path,
-      addEmployee: '/' + router.location.routes[0].children[1].path,
-    };
+  }
+
+  toEmployees() {
+    store.dispatch(toEmployeesPage());
+  }
+
+  toAddEditEmployee() {
+    store.dispatch(toAddEditEmployeePage());
   }
 
   render() {
@@ -43,14 +45,14 @@ export class Navigation extends LitElement {
       <nav>
         <ul>
           <li>
-            <a href=${this.linkHref.employees}
-              >${getTranslation('employees')}</a
-            >
+            <button @click=${this.toEmployees} class="primary">
+              ${getTranslation('employees')}
+            </button>
           </li>
           <li>
-            <a href=${this.linkHref.addEmployee}
-              >${getTranslation('addEmployee')}</a
-            >
+            <button @click=${this.toAddEditEmployee} class="primary">
+              ${getTranslation('addEmployee')}
+            </button>
           </li>
         </ul>
       </nav>

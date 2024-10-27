@@ -1,11 +1,9 @@
 import {LitElement, html, css} from 'lit';
 import {classMap} from 'lit/directives/class-map.js';
-import {camelCaseToTitle} from '../utils';
 import {LoadingEmptyMixin} from '../mixins/LoadingEmptyMixin';
-import {fetchEmployees} from '../store';
+import {fetchEmployees, store, toAddEditEmployeePage} from '../store';
 import {AsyncDataController} from '../controllers/AsyncDataController';
 import {PaginationController} from '../controllers/PaginationController';
-import {Router} from '@vaadin/router';
 import {buttonStyles} from '../styles/button-style';
 import {getTranslation} from '../translation';
 
@@ -99,7 +97,7 @@ export class EmployeeRecords extends LoadingEmptyMixin(LitElement) {
     if (clickedEmployee) {
       const employeeEmail = clickedEmployee.getAttribute('data-email');
       // navigate to edit employee page
-      Router.go(`/add-edit-employee/${employeeEmail}`);
+      store.dispatch(toAddEditEmployeePage({email: employeeEmail}));
     }
   }
 

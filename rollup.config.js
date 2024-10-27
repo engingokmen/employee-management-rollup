@@ -5,11 +5,12 @@ export default {
   input: "src/main.js",
   output: [
     {
-      file: "dist/bundle.js",
-      format: "esm",
+      file: "dist/index.js",
+      format: "umd",
+      name: "name",
     },
     {
-      file: "dist/bundle.min.js",
+      file: "dist/index.min.js",
       format: "iife",
       name: "version",
       plugins: [terser()],
