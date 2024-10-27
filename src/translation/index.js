@@ -31,6 +31,7 @@ const translations = {
     edit: 'Edit',
     submit: 'Submit',
     typeToSearch: 'Type to search',
+    getMock: 'Get Mock Data',
   },
   tr: {
     employeeManagement: 'Personel Yönetimi',
@@ -59,5 +60,6 @@ const translations = {
     edit: 'Edit',
     submit: 'Kaydet',
     typeToSearch: 'Aramak için yazın',
+    getMock: 'Örnek Veri Al',
   },
 };

@@ -6,6 +6,7 @@ import {AsyncDataController} from '../controllers/AsyncDataController';
 import {PaginationController} from '../controllers/PaginationController';
 import {buttonStyles} from '../styles/button-style';
 import {getTranslation} from '../translation';
+import {fetchMockData} from '../store/employeeReducer';
 
 export class EmployeeRecords extends LoadingEmptyMixin(LitElement) {
   static get styles() {
@@ -161,6 +162,9 @@ export class EmployeeRecords extends LoadingEmptyMixin(LitElement) {
       <button @click=${this.handleDisplay} class="primary">
         ${getTranslation('display')}
         ${this.display ? getTranslation('table') : getTranslation('list')}
+      </button>
+      <button @click=${() => store.dispatch(fetchMockData)} class="primary">
+        ${getTranslation('getMock')}
       </button>
       ${this.renderWithLoadingEmpty(
         this.employees.isLoading,
