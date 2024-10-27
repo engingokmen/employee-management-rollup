@@ -73,7 +73,7 @@ export class AreYouSure extends LitElement {
 
   renderTemplate() {
     render(
-      html`<dialog open>
+      html`<dialog open class="dialog">
         <p>${getTranslation('areYouSure')} ${this.action.toUpperCase()} ?</p>
         <button @click=${this.handleSubmit}>${getTranslation('ok')}</button>
         <button @click=${this.handleCancel}>${getTranslation('cancel')}</button>
